@@ -40,7 +40,6 @@ const Home = () => {
         setDeletedWorkout(response)
         setShowModal(true)
       }
-      console.log("deleted successfully", response)
     } catch (error) {
       setError(error.response.data.error)
     }

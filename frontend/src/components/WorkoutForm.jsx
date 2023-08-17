@@ -9,8 +9,8 @@ const WorkoutForm = () => {
   const [ isLoading, setIsLoading] = useState(false);
   const [ error, setError] = useState(null);
   const { workouts, setWorkouts } = useContext(WorkoutContext)
-  const [ showForm, setShowForm] = useState(false)
-  const [emptyFields, setEmptyFields] = useState([])
+  const [ showForm, setShowForm ] = useState(false)
+  const [ emptyFields, setEmptyFields ] = useState([])
 
 
   const handleChange = (event) => {
@@ -36,13 +36,14 @@ const WorkoutForm = () => {
             ...currentWorkouts
           ]
         })
+        setFormData({ title: "", load: "", reps: "" });
         setIsLoading(false)
         setError(null)
-        setFormData({ title: "", load: "", reps: "" });
-        console.log("New workout added", workout)
+        setEmptyFields([])
     } catch (error) {
         setIsLoading(false)
         setError(error.response.data.error)
+        setEmptyFields(error.response.data.emptyFields)
     }
 
   };
@@ -66,7 +67,6 @@ const WorkoutForm = () => {
           type="text"
           name="title"
           id="title"
-        //   required
           value={formData.title}
           onChange={handleChange}
           className={emptyFields.includes('title') ? 'error' : ''}
@@ -76,7 +76,6 @@ const WorkoutForm = () => {
           type="number"
           name="load"
           id="load"
-        //   required
           value={formData.load}
           onChange={handleChange}
           className={emptyFields.includes('load') ? 'error' : ''}
@@ -86,7 +85,6 @@ const WorkoutForm = () => {
           type="number"
           name="reps"
           id="reps"
-        //   required
           value={formData.reps}
           onChange={handleChange}
           className={emptyFields.includes('reps') ? 'error' : ''}

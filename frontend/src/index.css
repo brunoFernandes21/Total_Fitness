@@ -106,7 +106,7 @@ header {
 }
 /* new workout form */
 .error, input.error {
-  border: 2px solid rgb(185 28 28);
+  border: 2px solid var(--error) ;
 }
 /* .workout__form {
   position: sticky;

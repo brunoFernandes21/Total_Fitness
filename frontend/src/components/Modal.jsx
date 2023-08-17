@@ -39,25 +39,28 @@ const Modal = ({ showModal, setShowModal, deletedWorkout }) => {
             <h3 className="text-center">
               You have successfully deleted the following workout
             </h3>
-            <div className="grid-rows gap-2 justify-center mt-4">
+            <div className="flex flex-wrap gap-2 justify-center mt-4">
               <p className="font-bold">
                 <strong>Title: </strong>
                 {title}
               </p>
+              <span>.</span>
               <p>
                 <strong>Load: </strong>
                 {load}kg
               </p>
+              <span>.</span>
               <p>
                 <strong>Reps: </strong>
                 {reps}
               </p>
+              <span>.</span>
               <p>
                 <strong>Created: </strong>
                 {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
               </p>
             </div>
-            <button onClick={() => setShowModal(false)}>Close Modal</button>
+            <button onClick={() => setShowModal(false)}>Close</button>
           </motion.div>
         </motion.div>
       )}
