@@ -1,33 +1,61 @@
-import { useEffect, useState } from 'react'
-import { fetchAllWorkouts } from '../api'
+import { useEffect, useState, useContext } from 'react'
+import { fetchAllWorkouts, deleteWorkout } from '../api'
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from '../components/WorkoutForm'
+import {WorkoutContext} from "../contexts/WorkoutContext"
+import Modal from '../components/Modal'
+
 
 const Home = () => {
+  const { workouts, setWorkouts} = useContext(WorkoutContext)
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+  const [deletedWorkout, setDeletedWorkout] = useState({})
 
-  const [workouts, setWorkouts] = useState([])
 
   useEffect(() => {
     const getAllWorkouts = async () => {
       try {
         const workouts = await fetchAllWorkouts()
-        if(workouts) {
           setWorkouts(workouts)
-        }
+          setIsLoading(false)
+          setError(false)
       } catch (error) {
-        console.log(error)
+        setIsLoading(false)
+        setError(error)
       }
     }
     getAllWorkouts()
   },[])
+
+  const onDelete = async (id) => {
+    try {
+      const response = await deleteWorkout(id)
+      if(response) {
+        const filteredWorkouts = workouts.filter((workout) => {
+          return workout._id !== id
+        })
+        setWorkouts(filteredWorkouts)
+        setDeletedWorkout(response)
+        setShowModal(true)
+      }
+      console.log("deleted successfully", response)
+    } catch (error) {
+      setError(error.response.data.error)
+    }
+    
+  }
   return (
     <div className='home'>
+      <Modal showModal={showModal} setShowModal={setShowModal} deletedWorkout={deletedWorkout}/>
         <div className='workouts'>
-        {workouts && workouts.map((workout) => (
-          <WorkoutDetails key={workout._id} workout={workout}/>
+        {!isLoading && workouts.map((workout) => (
+          <WorkoutDetails key={workout._id} workout={workout} onDelete={onDelete}/>
         ))}
+        {isLoading && <h1>Loading workouts...</h1>}
         </div>
-        <div className="workout__form sticky top-28 self-start mt-5 hover:shadow-xl">
+        <div className="workout__form mt-5 sticky top-24 self-start">
         <WorkoutForm/>
       </div>
     </div>

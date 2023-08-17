@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 //context api
-// import { WorkoutContext } from '../context/WorkoutContext'
+import { WorkoutContext } from '../contexts/WorkoutContext'
 import FormHeader from "./FormHeader";
 import { postWorkout } from "../api";
 
@@ -8,7 +8,7 @@ const WorkoutForm = () => {
   const [ formData, setFormData] = useState({ title: "", load: "", reps: "" });
   const [ isLoading, setIsLoading] = useState(false);
   const [ error, setError] = useState(null);
-//   const { workouts, setWorkouts } = useContext(WorkoutContext)
+  const { workouts, setWorkouts } = useContext(WorkoutContext)
   const [ showForm, setShowForm] = useState(false)
   const [emptyFields, setEmptyFields] = useState([])
 
@@ -29,6 +29,13 @@ const WorkoutForm = () => {
     setError(null)
     try {
         const workout = await postWorkout(formData)
+        setShowForm(false)
+        setWorkouts((currentWorkouts) => {
+          return [
+            workout,
+            ...currentWorkouts
+          ]
+        })
         setIsLoading(false)
         setError(null)
         setFormData({ title: "", load: "", reps: "" });
@@ -42,10 +49,11 @@ const WorkoutForm = () => {
 
   const showAddForm = () => {
     setShowForm(!showForm)
+    setError(null)
   }
   //add for adjust size of form mt-5 mb-60
   return (
-    <div className="create rounded-lg text-white p-5">
+    <div className="create rounded-lg p-5">
       <FormHeader onAdd={showAddForm} showForm={showForm}/>
       {error && (
         <div className='error bg-red-100 mb-5 text-red-700 px-4 py-3 rounded flex justify-center items-center" role="alert" '>
@@ -83,7 +91,7 @@ const WorkoutForm = () => {
           onChange={handleChange}
           className={emptyFields.includes('reps') ? 'error' : ''}
         />
-        {!isLoading && <button  className="mt-4 ">Create Workout</button>}
+        {!isLoading && <button  className="mt-4 bg-blue-700 text-white text-lg md:text-xl">Create Workout</button>}
         {isLoading && <button disabled className="mt-4 ">Creating...</button>}
       </form>}
     </div>

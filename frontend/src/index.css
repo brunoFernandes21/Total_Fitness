@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 * {
   box-sizing: border-box;
@@ -15,24 +18,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
+  color: rgb(15 23 42);
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%); */
 }
-
 header {
-  /* background-color: #232946; */
-  background: linear-gradient(90deg, rgba(131,58,180,1) 12%, rgba(10,79,187,1) 100%);
-  /* border-bottom: 3px solid #fff; */
-}
-
-header .nav {
-  /* max-width: 1400px; */
-}
-
-header a {
-  color: #fff;
-  text-decoration: none;
+  box-shadow: 0px 0px 4px 4px rgba(209, 207, 207, 0.2);
 }
 
 .pages {
@@ -46,16 +38,15 @@ header a {
   grid-template-columns: 2fr 1fr;
   gap: 30px;
   height: fit-content;
-  /* border: 3px solid red; */
 }
 
 .workout__details {
-  background: #fff;
-  border-radius: 4px;
+  background: transparent;
+  border-radius: 5px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 4px 4px rgba(209, 207, 207, 0.2);
 }
 
 .workout__details h3 {
@@ -67,20 +58,51 @@ header a {
 .workout__details p {
   margin: 0;
   font-size: 0.9em;
-  color: #232946;
+  color: rgb(15 23 42);
 }
 
-.workout__details .delete {
+.delete {
   position: absolute;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   top: 20px;
   right: 20px;
   cursor: pointer;
   padding: 6px;
   /* background: #f5dfdf; */
   border-radius: 50%;
+}
+
+/* modal  */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.modal{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+.modal button{
+  color: #fff;
+  background: rgba(10,79,187,1);
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.modal p{
+  color: #444;
+  font-weight: bold;
 }
 /* new workout form */
 .error, input.error {
@@ -93,8 +115,8 @@ header a {
 } */
 .create {
   background: transparent;
-  border: 3px solid #fff;
-  box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.2);
+  /* border: 3px solid #fff; */
+  box-shadow: 0px 0px 4px 4px rgba(209, 207, 207, 0.2);
 }
 
 label, input {
@@ -108,20 +130,17 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  border: none;
-  border-radius: 50px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   box-sizing: border-box;
   color: black;
 }
 form button {
-  background: #000;
   border: 0;
-  color: #fff;
-  padding: 15px;
-  border-radius: 50px;
-  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
   font-weight: 900;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Poppins', sans-serif;;
   cursor: pointer;
   width: 100%;
 }

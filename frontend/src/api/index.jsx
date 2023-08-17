@@ -17,3 +17,8 @@ export const postWorkout = async (newWorkout) => {
     );
     return response.data
 };
+
+export const deleteWorkout = async (id) => {
+  const response = await workoutApi.delete(`${id}`)
+  return response.data.workout
+}
