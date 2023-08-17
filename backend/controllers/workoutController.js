@@ -33,11 +33,28 @@ const getSingleWorkout = async (request, response) => {
 //CREATE a new workout
 const createWorkout = async (request, response) => {
   const { title, load, reps } = request.body;
+
+  const emptyFields = []
+
+  if(!title) {
+    emptyFields.push("title")
+  }
+  if(!load) {
+    emptyFields.push("load")
+  }
+  if(!reps) {
+    emptyFields.push("reps")
+  }
+
+  if(emptyFields.length > 0) {
+    return response.status(400).send({error: "Please fill in all the fields", emptyFields})
+  }
+
   try {
     const newWorkout = await Workout.create({ title, load, reps });
     response.status(200).send(newWorkout);
   } catch (error) {
-    response.status(400).send({ error: error.message });
+     
   }
 };
 
