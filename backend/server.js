@@ -1,5 +1,6 @@
 //require express
 const express = require('express')
+const cors = require('cors');
 const mongoose = require("mongoose")
 // require dotenv 
 require("dotenv").config()
@@ -8,7 +9,8 @@ const workoutRoutes = require("./routes/workoutRoutes")
 const app = express()
 
 //middleware
-app.use(express.json()) //allows to make post and patch requests
+app.use(express.json()) //allows to make post and patch request
+app.use(cors());
 app.use((request, response, next) => {
     console.log(request.path, request.method)
     next()
