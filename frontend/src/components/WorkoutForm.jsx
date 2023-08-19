@@ -30,12 +30,7 @@ const WorkoutForm = () => {
     try {
         const workout = await postWorkout(formData)
         setShowForm(false)
-        setWorkouts((currentWorkouts) => {
-          return [
-            workout,
-            ...currentWorkouts
-          ]
-        })
+        setWorkouts([workout, ...workouts])
         setFormData({ title: "", load: "", reps: "" });
         setIsLoading(false)
         setError(null)

@@ -46,7 +46,7 @@ const Home = () => {
     
   }
   return (
-    <div className='home'>
+    <div className='home py-5'>
       <Modal showModal={showModal} setShowModal={setShowModal} deletedWorkout={deletedWorkout}/>
         <div className='workouts'>
         {!isLoading && workouts.map((workout) => (
