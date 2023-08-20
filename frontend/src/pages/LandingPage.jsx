@@ -16,7 +16,7 @@ const LandingPage = () => {
               and reach your goals with MyFitnessPal.
             </p>
           </div>
-            <button className=" bg-blue-600 text-white w-[24.8rem] md:w-[20rem] py-3.5 rounded mt-4 font-bold ">
+            <button className=" bg-blue-600 text-white w-[24.8rem] md:w-[21.5rem] py-3.5 rounded mt-4 font-bold ">
               START FOR FREE
             </button>
         </div>
