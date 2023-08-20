@@ -163,3 +163,29 @@ form button {
     margin-bottom: 20px;
   }
 }
+
+/* register page styling */
+
+.signup__btn {
+  background-color: #232946;
+  font-weight: 900;
+  margin-top: 10px;
+}
+.google {
+  background-color: #232946;
+}
+.ParticlesBg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container{
+  left      : 50%;
+  top       : 50%;
+  position  : absolute;
+  transform : translate(-50%, -50%);
+} 

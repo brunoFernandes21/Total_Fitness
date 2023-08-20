@@ -17,6 +17,7 @@ const Home = () => {
   useEffect(() => {
     const getAllWorkouts = async () => {
       try {
+        setIsLoading(true)
         const workouts = await fetchAllWorkouts()
           setWorkouts(workouts)
           setIsLoading(false)
