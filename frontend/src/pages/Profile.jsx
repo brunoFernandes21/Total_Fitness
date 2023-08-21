@@ -12,7 +12,7 @@ const Profile = () => {
   };
   return (
     <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-      <div className="border px-6 py-8 rounded shadow-md w-full">
+      <div className="border px-6 py-8 rounded shadow-md w-full flex flex-col">
         <h1 className="text-center mb-3 text-xl">
           <strong>Profile Page</strong>
         </h1>
@@ -23,15 +23,21 @@ const Profile = () => {
           <strong>Email: </strong>
           {currentUser?.email}
         </p>
-        <button className="bg-slate-800 text-white p-2 rounded">
-          Delete Account
-        </button>
         <button
           onClick={updateProfile}
           className="signup__btn w-full text-center py-3 mt-4 rounded text-white my-1"
         >
           Update Profile
         </button>
+        {/* <button
+          onClick={updateProfile}
+          className="signup__btn w-full text-center py-3 mt-4 rounded text-white my-1"
+        >
+          Delete Account
+        </button> */}
+        {/* <button className="bg-slate-800 text-white p-2 rounded">
+          Delete Account
+        </button> */}
       </div>
     </div>
   );

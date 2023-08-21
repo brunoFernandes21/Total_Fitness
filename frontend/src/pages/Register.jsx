@@ -87,24 +87,29 @@ const Register = ({ setCurrentUser }) => {
             <span className="font-bold ">{dbError}</span>
           </div>
         )}
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           className="block text-black border border-grey-light w-full p-3 rounded-md mb-4"
           name="username"
+          id="username"
           value={formData.username}
           placeholder="Username"
           onChange={handleChange}
           required
         />
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           className="block text-black border border-grey-light w-full p-3 rounded-md mb-4"
           name="email"
+          id="email"
           value={formData.email}
           placeholder="Email address"
           onChange={handleChange}
           required
         />
+         <label htmlFor="password">Password</label>
         <input
           type="password"
           className={`${
@@ -116,6 +121,8 @@ const Register = ({ setCurrentUser }) => {
           onChange={handleChange}
           required
         />
+
+          <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           type="password"
           className={`${

@@ -43,27 +43,33 @@ const UpdateProfile = () => {
             <span className="font-bold">{message}</span>
           </div>
         )}
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           className="block text-black border border-grey-light w-full p-3 rounded mb-4"
           name="email"
+          id="email"
           placeholder="Leave blank to keep the same"
           value={formData.email}
           onChange={handleChange}
         //   defaultValue={currentUser.email}
         />
+        <label htmlFor="email">Password</label>
         <input
           type="password"
           className="block text-black border border-grey-light w-full p-3 rounded mb-4"
           name="password"
+          id="password"
           placeholder="Leave blank to keep the same"
           value={formData.password}
           onChange={handleChange}
         />
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           type="password"
           className="block text-black border border-grey-light w-full p-3 rounded mb-4"
           name="confirmPassword"
+          id="confirmPassword"
           placeholder="Leave blank to keep the same"
           value={formData.confirmPassword}
           onChange={handleChange}

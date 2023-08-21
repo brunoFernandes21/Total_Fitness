@@ -54,19 +54,23 @@ const Login = ({ setCurrentUser }) => {
             <span className="font-bold">{error}</span>
           </div>
         )}
+        <label htmlFor="email">Email</label>
         <input
           type="text"
           className="block border border-grey-light w-full p-3 rounded-md mb-4 text-black"
           name="email"
+          id="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
           required
         />
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           className="block border border-grey-light w-full text-black p-3 rounded-md mb-4"
           name="password"
+          id="password"
           value={formData.password}
           placeholder="Password"
           onChange={handleChange}

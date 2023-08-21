@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import { ProtectRoutes } from "../src/ProtectedRoutes";
 import { UnProtectedRoutes } from "../src/UnprotectedRoutes";
@@ -18,16 +18,17 @@ import UpdateProfile from "./pages/UpdateProfile";
 
 function App() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [showInfo, setShowInfo] = useState(false)
   const logout = async() => {
     await signOut(auth)
     setCurrentUser(null)
+    setShowInfo(false)
   };
 
-  console.log(currentUser)
   return (
     
     <div className="App">
-      <Navbar user={currentUser} logout={logout} />
+      <Navbar user={currentUser} logout={logout} showInfo={showInfo} setShowInfo={setShowInfo} />
       <div className="max-w-[1200px] px-5 m-auto  text-slate-800">
         <Routes>
           <Route
