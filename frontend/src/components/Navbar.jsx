@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { BiSolidUserCircle } from "react-icons/bi"
 import { useState } from "react";
 
 const Navbar = ({ user, logout, showInfo, setShowInfo }) => {
@@ -17,14 +18,13 @@ const Navbar = ({ user, logout, showInfo, setShowInfo }) => {
         <div className=" flex justify-center items-center gap-6 ">
           {user && (
             <div className="flex justify-center items-center gap-4">
-              <button className="text-sm text-slate-800 transition duration-150 ease-in font-bold" onClick={() => setShowInfo(!showInfo)}>
-                PROFILE
+              <button className="text-lg text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center" onClick={() => setShowInfo(!showInfo)}>
+                <BiSolidUserCircle className="w-10 h-10 text-white"/>
               </button>
 
-           { showInfo &&  <div className="bg-white rounded-md absolute top-12 right-3 shadow-md " >
+           { showInfo &&  <div className="bg-white rounded-md absolute top-[60px] right-3 shadow-md " >
                 <ul className="grid grid-cols justify-start items-start text-lg divide-y">
                   <p className="px-4 py-2 ">{user.displayName}</p>
-                  {/* <p className="px-4 py-2 ">{user.email} </p> */}
                   <Link to="/profile" className="px-4 py-2 transition duration-150 ease-in hover:bg-slate-100 w-full">Profile Info</Link>
                   <button
                     className="px-4 py-2 text-slate-800 transition duration-150 ease-in hover:bg-slate-100 w-full text-left"

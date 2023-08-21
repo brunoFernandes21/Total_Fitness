@@ -52,7 +52,6 @@ const UpdateProfile = () => {
           placeholder="Leave blank to keep the same"
           value={formData.email}
           onChange={handleChange}
-        //   defaultValue={currentUser.email}
         />
         <label htmlFor="email">Password</label>
         <input
