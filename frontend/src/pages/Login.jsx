@@ -2,15 +2,16 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-const Login = ({ setCurrentUser }) => {
+const Login = () => {
+  const {setCurrentUser } = useContext(UserContext);
+
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setFormData((prevFormData) => {
@@ -35,7 +36,7 @@ const Login = ({ setCurrentUser }) => {
       setCurrentUser(userCredential.user);
       setLoading(false);
     } catch (error) {
-      setError("Invalid Email or Password");
+      setError("We did not recognise your email or password");
       setLoading(false);
     }
   };

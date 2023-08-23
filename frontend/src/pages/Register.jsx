@@ -1,10 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebase/firebase.js";
+import { auth, db } from "../firebase/firebase.js";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-const Register = ({ setCurrentUser }) => {
+import { setDoc, doc } from "firebase/firestore"; 
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
+const Register = () => {
+  const {setCurrentUser, setUserName } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState(null);
   const [dbError, setDbError] = useState(null);
@@ -55,9 +57,14 @@ const Register = ({ setCurrentUser }) => {
           displayName: userName,
         });
         setCurrentUser(user);
-        console.log("Profile updated", user.displayName);
+        setUserName(userName)
         setLoading(false);
-        console.log("user created", user);
+        await setDoc(doc(db, "users", `${user.uid}`), {
+          userId: user.uid,
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL
+        });        
       } catch (error) {
         setDbError("Password should be at least 6 characters (weak-password).");
         setLoading(false);
@@ -116,6 +123,7 @@ const Register = ({ setCurrentUser }) => {
             passwordError ? " border-red-600" : ""
           } block text-black border border-grey-light w-full p-3 rounded-md mb-4`}
           name="password"
+          id="password"
           value={formData.password}
           placeholder="Password"
           onChange={handleChange}
@@ -129,6 +137,7 @@ const Register = ({ setCurrentUser }) => {
             passwordError ? " border-red-600" : ""
           } block text-black border border-grey-light w-full p-3 rounded-md mb-4`}
           name="confirmPassword"
+          id="confirmPassword"
           value={formData.confirmPassword}
           placeholder="Confirm Password"
           onChange={handleChange}

@@ -24,7 +24,6 @@ function App() {
     setCurrentUser(null)
     setShowInfo(false)
   };
-
   return (
     
     <div className="App">
@@ -68,7 +67,7 @@ function App() {
             path="/login"
             element={
               <UnProtectedRoutes user={currentUser}>
-                <Login setCurrentUser={setCurrentUser}/>
+                <Login/>
               </UnProtectedRoutes>
             }
           />
@@ -76,7 +75,7 @@ function App() {
             path="/register"
             element={
               <UnProtectedRoutes user={currentUser}>
-                <Register setCurrentUser={setCurrentUser} />
+                <Register />
               </UnProtectedRoutes>
             }
           />
