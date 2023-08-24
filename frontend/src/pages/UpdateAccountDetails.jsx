@@ -3,11 +3,16 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.js";
-import { updateEmail, updatePassword } from "firebase/auth";
+import {
+  updateEmail,
+  updatePassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 const UpdateAccountDetails = () => {
   const { currentUser } = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     currentEmail: currentUser.email,
     newEmail: "",
@@ -30,37 +35,38 @@ const UpdateAccountDetails = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (currentUser.email !== formData.newEmail) {
-      setLoading(true);
-      setError(null);
-      setMessage(null);
-      console.log("fired")
-      try {
-        await updateEmail(auth.currentUser, formData.newEmail);
-        setLoading(false);
-        console.log("inside")
-        setMessage("You details have been updated")
-      } catch (error) {
+    if (formData.newEmail !== "" || formData.password !== "") {
+      if (currentUser.email !== formData.newEmail) {
         setLoading(true);
-        setError("Unable to update details");
-        console.log(error.message)
+        setError(null);
+        setMessage(null);
+        console.log("fired");
+        try {
+          await updateEmail(auth.currentUser, formData.newEmail);
+          await sendEmailVerification(auth.currentUser);
+          setLoading(false);
+        } catch (error) {
+          setLoading(true);
+          setError("Unable to update details");
+        }
       }
-    }
 
-    if (currentUser.password !== formData.password) {
-      setLoading(true);
-      setError(null);
-      setMessage(null);
-      try {
-        await updatePassword(currentUser, formData.password);
-        setLoading(false);
-        setMessage("You details have been updated")
-      } catch (error) {
+      if (currentUser.password !== formData.password) {
         setLoading(true);
-        setError("Unable to update details");
+        setError(null);
+        setMessage(null);
+        try {
+          await updatePassword(currentUser, formData.password);
+          await sendPasswordResetEmail(auth, formData.email);
+          setLoading(false);
+        } catch (error) {
+          setLoading(true);
+          setError("Unable to update details");
+        }
       }
+      setMessage("Check your email for instructions");
+      navigate("/user/account-details");
     }
-    navigate("/user/account-details")
   };
 
   return (
@@ -113,7 +119,7 @@ const UpdateAccountDetails = () => {
         />
         <button
           disabled={loading}
-          className="signup__btn w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
+          className={` w-full text-center py-3 rounded bg-blue text-white hover:bg-green-dark focus:outline-none my-1 bg-slate-800`}
         >
           Save
         </button>

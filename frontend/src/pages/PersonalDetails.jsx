@@ -34,22 +34,12 @@ const PersonalDetails = () => {
           </div>
           </div>
         </div>
-
-        <button
+          <button
           onClick={updateDetails}
-          className="signup__btn w-full text-center py-3 mt-4 rounded text-white my-1"
+          className="signup__btn w-[50%] m-auto text-center py-3 mt-4 rounded text-white my-1"
         >
           Update Details
         </button>
-        {/* <button
-          onClick={updateProfile}
-          className="signup__btn w-full text-center py-3 mt-4 rounded text-white my-1"
-        >
-          Delete Account
-        </button> */}
-        {/* <button className="bg-slate-800 text-white p-2 rounded">
-          Delete Account
-        </button> */}
       </div>
     </div>
   );

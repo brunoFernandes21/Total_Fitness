@@ -59,7 +59,7 @@ const Register = () => {
       setCurrentUser(user);
       setLoading(false);
     } catch (error) {
-      setDbError(error.message);
+      setDbError('Unable to login');
       setLoading(false);
     }
   };
