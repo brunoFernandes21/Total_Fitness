@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./contexts/UserContext";
 import { ProtectRoutes } from "../src/ProtectedRoutes";
 import { UnProtectedRoutes } from "../src/UnprotectedRoutes";
@@ -12,22 +12,26 @@ import  {auth}  from "./firebase/firebase.js"
 import { signOut } from "firebase/auth";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
-import UpdateProfile from "./pages/UpdateProfile";
+import PersonalDetails from "./pages/PersonalDetails";
+import UpdateUserDetails from "./pages/UpdateUserDetails";
+import AccountDetails from "./pages/AccountDetails";
+import UpdateAccountDetails from "./pages/UpdateAccountDetails";
 
+//SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
 
 function App() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [showInfo, setShowInfo] = useState(false)
   const logout = async() => {
     await signOut(auth)
     setCurrentUser(null)
+    setShowInfo(false)
   };
 
-  console.log(currentUser)
   return (
     
     <div className="App">
-      <Navbar user={currentUser} logout={logout} />
+      <Navbar user={currentUser} logout={logout} showInfo={showInfo} setShowInfo={setShowInfo} />
       <div className="max-w-[1200px] px-5 m-auto  text-slate-800">
         <Routes>
           <Route
@@ -39,22 +43,37 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/user/personal-details"
             element={
               <ProtectRoutes user={currentUser}>
-                <Profile />
+                <PersonalDetails />
               </ProtectRoutes>
             }
           />
           <Route
-            path="/update-profile"
+            path="/user/personal-details/update-personal-details"
             element={
               <ProtectRoutes user={currentUser}>
-                <UpdateProfile />
+                <UpdateUserDetails />
               </ProtectRoutes>
             }
           />
-          {/* <Route path="/" element={user ? <Home /> : <Navigate to="/landing-page" />} /> */}
+          <Route
+            path="/user/account-details"
+            element={
+              <ProtectRoutes user={currentUser}>
+                <AccountDetails />
+              </ProtectRoutes>
+            }
+          />
+          <Route
+            path="/user/account-details/update-account-details"
+            element={
+              <ProtectRoutes user={currentUser}>
+                <UpdateAccountDetails />
+              </ProtectRoutes>
+            }
+          />
           <Route
             path="/landing-page"
             element={
@@ -67,7 +86,7 @@ function App() {
             path="/login"
             element={
               <UnProtectedRoutes user={currentUser}>
-                <Login setCurrentUser={setCurrentUser}/>
+                <Login/>
               </UnProtectedRoutes>
             }
           />
@@ -75,7 +94,7 @@ function App() {
             path="/register"
             element={
               <UnProtectedRoutes user={currentUser}>
-                <Register setCurrentUser={setCurrentUser} />
+                <Register />
               </UnProtectedRoutes>
             }
           />

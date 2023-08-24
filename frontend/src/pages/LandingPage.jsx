@@ -1,6 +1,7 @@
 import React from "react";
 import section1 from "../assets/images/landing-page-01.webp";
 import section2 from "../assets/images/landing-page-section-2.webp";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -17,7 +18,7 @@ const LandingPage = () => {
             </p>
           </div>
             <button className=" bg-blue-600 text-white w-[24.8rem] md:w-[21.5rem] py-3.5 rounded mt-4 font-bold ">
-              START FOR FREE
+              <Link to="/register">START FOR FREE</Link>
             </button>
         </div>
         <div className="mt-12 lg:mt-0">

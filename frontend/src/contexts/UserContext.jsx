@@ -7,19 +7,26 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true)
+  const [userName, setUserName] = useState(null)
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setCurrentUser(currentUser)
+        setUserName(currentUser.displayName)
+        setLoading(false)
+      } else {
         setLoading(false)
       }
     });
     return unsubscribe
-  });
-
+  }, [currentUser]);
+  
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, loading }}>
-      {children}
+    <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName}}>
+      {/* {children} */}
+      {!loading && children}
+      {loading && <h1>Loading...</h1>}
     </UserContext.Provider>
   );
 };

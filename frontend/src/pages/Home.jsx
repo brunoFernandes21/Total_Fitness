@@ -5,10 +5,9 @@ import WorkoutForm from '../components/WorkoutForm'
 import {WorkoutContext} from "../contexts/WorkoutContext"
 import Modal from '../components/Modal'
 
-
 const Home = () => {
   const { workouts, setWorkouts} = useContext(WorkoutContext)
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [deletedWorkout, setDeletedWorkout] = useState({})
@@ -17,13 +16,13 @@ const Home = () => {
   useEffect(() => {
     const getAllWorkouts = async () => {
       try {
-        setIsLoading(true)
+        setLoading(true)
         const workouts = await fetchAllWorkouts()
           setWorkouts(workouts)
-          setIsLoading(false)
+          setLoading(false)
           setError(false)
       } catch (error) {
-        setIsLoading(false)
+        setLoading(false)
         setError(error)
       }
     }
@@ -50,10 +49,10 @@ const Home = () => {
     <div className='home py-5'>
       <Modal showModal={showModal} setShowModal={setShowModal} deletedWorkout={deletedWorkout}/>
         <div className='workouts'>
-        {!isLoading && workouts.map((workout) => (
+        {!loading && workouts.map((workout) => (
           <WorkoutDetails key={workout._id} workout={workout} onDelete={onDelete}/>
         ))}
-        {isLoading && <h1>Loading workouts...</h1>}
+        {loading && <h1>Loading workouts...</h1>}
         </div>
         <div className="workout__form mt-5 sticky top-24 self-start">
         <WorkoutForm/>
