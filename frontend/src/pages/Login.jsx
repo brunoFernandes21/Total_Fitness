@@ -37,7 +37,9 @@ const Login = () => {
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log("hey")
     const email = formData.email;
     const password = formData.password;
     try {

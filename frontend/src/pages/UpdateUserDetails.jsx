@@ -101,7 +101,7 @@ const UpdateUserDetails = () => {
         </button>
 
         <div className="text-grey-dark mt-4 text-center">
-          <Link className="hover:underline text-xl" to="/user/profile">
+          <Link className="hover:underline text-xl" to="/user/personal-details">
             <p>Cancel</p>
           </Link>
         </div>

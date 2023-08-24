@@ -23,7 +23,8 @@ export const UserProvider = ({ children }) => {
   }, [currentUser]);
   
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, loading, setLoading }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName}}>
+      {/* {children} */}
       {!loading && children}
       {loading && <h1>Loading...</h1>}
     </UserContext.Provider>

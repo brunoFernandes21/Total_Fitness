@@ -1,38 +1,74 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase/firebase.js";
+import { updateEmail, updatePassword } from "firebase/auth";
 
-const UpdateProfile = () => {
+const UpdateAccountDetails = () => {
   const { currentUser } = useContext(UserContext);
-
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    name: "",
     currentEmail: currentUser.email,
-    newEmail: ""
+    newEmail: "",
+    password: "",
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
-    const {name, value} = event.target
+    const { name, value } = event.target;
     setFormData((current) => {
-        return {
-            ...current,
-            [name]: value
-        }
-    })
-  }
+      return {
+        ...current,
+        [name]: value,
+      };
+    });
+  };
 
-  const handleSubmit = async(event) => {
-    event.preventDefault()
-    console.log("fired")
-  } 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (currentUser.email !== formData.newEmail) {
+      setLoading(true);
+      setError(null);
+      setMessage(null);
+      console.log("fired")
+      try {
+        await updateEmail(auth.currentUser, formData.newEmail);
+        setLoading(false);
+        console.log("inside")
+        setMessage("You details have been updated")
+      } catch (error) {
+        setLoading(true);
+        setError("Unable to update details");
+        console.log(error.message)
+      }
+    }
+
+    if (currentUser.password !== formData.password) {
+      setLoading(true);
+      setError(null);
+      setMessage(null);
+      try {
+        await updatePassword(currentUser, formData.password);
+        setLoading(false);
+        setMessage("You details have been updated")
+      } catch (error) {
+        setLoading(true);
+        setError("Unable to update details");
+      }
+    }
+    navigate("/user/account-details")
+  };
 
   return (
     <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-      <form className="border px-6 py-8 rounded shadow-md w-full" onSubmit={handleSubmit}>
+      <form
+        className="border px-6 py-8 rounded shadow-md w-full"
+        onSubmit={handleSubmit}
+      >
         <h1 className="mb-6 text-3xl text-center">Update Details</h1>
         {error && (
           <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"'>
@@ -44,16 +80,7 @@ const UpdateProfile = () => {
             <span className="font-bold">{message}</span>
           </div>
         )}
-        <label htmlFor="name">Name</label>
-        <input
-          type="name"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
-          name="name"
-          id="name"
-          placeholder="Leave blank to keep the same"
-          value={formData.name}
-          onChange={handleChange}
-        />
+
         <label htmlFor="currentEmail">Current Email</label>
         <input
           type="email"
@@ -74,6 +101,16 @@ const UpdateProfile = () => {
           value={formData.newEmail}
           onChange={handleChange}
         />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          name="password"
+          id="password"
+          placeholder="Leave blank to keep the same"
+          value={formData.password}
+          onChange={handleChange}
+        />
         <button
           disabled={loading}
           className="signup__btn w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
@@ -82,7 +119,7 @@ const UpdateProfile = () => {
         </button>
 
         <div className="text-grey-dark mt-4 text-center">
-          <Link className="hover:underline text-xl" to="/user/profile">
+          <Link className="hover:underline text-xl" to="/user/account-details">
             <p>Cancel</p>
           </Link>
         </div>
@@ -91,4 +128,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default UpdateAccountDetails;

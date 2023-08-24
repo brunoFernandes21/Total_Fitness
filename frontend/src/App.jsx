@@ -12,8 +12,10 @@ import  {auth}  from "./firebase/firebase.js"
 import { signOut } from "firebase/auth";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
+import PersonalDetails from "./pages/PersonalDetails";
 import UpdateUserDetails from "./pages/UpdateUserDetails";
+import AccountDetails from "./pages/AccountDetails";
+import UpdateAccountDetails from "./pages/UpdateAccountDetails";
 
 //SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
 
@@ -41,18 +43,34 @@ function App() {
             }
           />
           <Route
-            path="/user/profile"
+            path="/user/personal-details"
             element={
               <ProtectRoutes user={currentUser}>
-                <Profile />
+                <PersonalDetails />
               </ProtectRoutes>
             }
           />
           <Route
-            path="/user/profile/update-user-details"
+            path="/user/personal-details/update-personal-details"
             element={
               <ProtectRoutes user={currentUser}>
                 <UpdateUserDetails />
+              </ProtectRoutes>
+            }
+          />
+          <Route
+            path="/user/account-details"
+            element={
+              <ProtectRoutes user={currentUser}>
+                <AccountDetails />
+              </ProtectRoutes>
+            }
+          />
+          <Route
+            path="/user/account-details/update-account-details"
+            element={
+              <ProtectRoutes user={currentUser}>
+                <UpdateAccountDetails />
               </ProtectRoutes>
             }
           />

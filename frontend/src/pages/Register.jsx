@@ -109,18 +109,18 @@ const Register = () => {
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
         </div>
+        <h1 className="mb-6 text-3xl text-center">Register</h1>
+        {passwordError && (
+          <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded flex justify-center "'>
+            <span className="font-bold ">{passwordError}</span>
+          </div>
+        )}
+        {dbError && (
+          <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded flex justify-center "'>
+            <span className="font-bold ">{dbError}</span>
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
-          <h1 className="mb-6 text-3xl text-center">Register</h1>
-          {passwordError && (
-            <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded flex justify-center "'>
-              <span className="font-bold ">{passwordError}</span>
-            </div>
-          )}
-          {dbError && (
-            <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded flex justify-center "'>
-              <span className="font-bold ">{dbError}</span>
-            </div>
-          )}
           <label htmlFor="username">Username</label>
           <input
             type="text"
