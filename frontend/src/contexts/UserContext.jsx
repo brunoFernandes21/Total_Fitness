@@ -8,6 +8,7 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true)
   const [userName, setUserName] = useState(null)
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -17,7 +18,7 @@ export const UserProvider = ({ children }) => {
       }
     });
     return unsubscribe
-  }, []);
+  }, [currentUser]);
 
   return (
     <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, loading, setLoading }}>

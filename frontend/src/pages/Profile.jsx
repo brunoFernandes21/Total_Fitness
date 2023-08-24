@@ -8,26 +8,38 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const updateProfile = () => {
-    navigate("/update-profile");
+    navigate("/user/profile/update-user-details");
   };
   return (
-    <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
+    <div className="container max-w-2xl mx-auto px-5 md:px-0">
       <div className="border px-6 py-8 rounded shadow-md w-full flex flex-col">
         <h1 className="text-center mb-3 text-xl">
-          <strong>Profile Page</strong>
+          <strong>Personal Details</strong>
         </h1>
-        <h3>
-          <strong>Name:</strong> {currentUser.displayName}
-        </h3>
-        <p>
-          <strong>Email: </strong>
-          {currentUser?.email}
-        </p>
+        <div className="grid md:grid-cols-2 md:gap-4">
+          <div className="py-4">
+            <p><strong>Name</strong></p>
+            <div className="bg-slate-100 p-4 rounded-md mt-2">
+            <p>
+              {currentUser.displayName}
+            </p>
+            </div>
+          </div>
+          <div className="py-4">
+          <strong>Avatar</strong>
+          <div className="bg-slate-100 p-4 rounded-md mt-2">
+            <p>
+              Default Avatar
+            </p>
+          </div>
+          </div>
+        </div>
+
         <button
           onClick={updateProfile}
           className="signup__btn w-full text-center py-3 mt-4 rounded text-white my-1"
         >
-          Update Profile
+          Update Details
         </button>
         {/* <button
           onClick={updateProfile}

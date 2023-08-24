@@ -1,7 +1,8 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebase.js";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, db } from "../firebase/firebase.js";
+import { setDoc, doc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
@@ -22,7 +23,21 @@ const Login = () => {
     });
   };
 
-  const login = async () => {
+  const handleGoogleAuth = async (event) => {
+    event.preventDefault();
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      setCurrentUser(user);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  const handleLogin = async () => {
     const email = formData.email;
     const password = formData.password;
     try {
@@ -36,16 +51,16 @@ const Login = () => {
       setCurrentUser(userCredential.user);
       setLoading(false);
     } catch (error) {
-      setError("We did not recognise your email or password");
+      setError("We did not recognise your details");
       setLoading(false);
     }
   };
 
   return (
     <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-      <form className="border px-6 py-8 rounded shadow-md text-slate-800 w-full flex flex-col">
+      <div className="border px-6 py-8 rounded shadow-md text-slate-800 w-full flex flex-col">
         <div className="flex flex-col gap-4 mb-4">
-          <button className="google flex gap-2 text-white p-4 w-full font-medium rounded-full">
+          <button onClick={handleGoogleAuth} className="google flex gap-2 text-white p-4 w-full font-medium rounded-full">
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
         </div>
@@ -55,6 +70,7 @@ const Login = () => {
             <span className="font-bold">{error}</span>
           </div>
         )}
+        <form onSubmit={handleLogin}>
         <label htmlFor="email">Email</label>
         <input
           type="text"
@@ -79,7 +95,6 @@ const Login = () => {
         />
         <button
           disabled={loading}
-          onClick={login}
           className="signup__btn text-white w-full text-center py-3 rounded-md my-1 "
         >
           Login to your account
@@ -97,7 +112,8 @@ const Login = () => {
             <span> Create New Acccount</span>
           </Link>
         </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

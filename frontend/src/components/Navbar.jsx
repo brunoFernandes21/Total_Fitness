@@ -44,17 +44,26 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
                 className="text-lg text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center"
                 onClick={() => setShowInfo(!showInfo)}
               >
-                <BiSolidUserCircle className="w-10 h-10 text-white" />
+                {currentUser.photoURL}
+                {!currentUser.photoURL && <BiSolidUserCircle className="w-10 h-10 text-white" />}
               </button>
 
               {showInfo && (
                 <div className="bg-white rounded-md absolute top-[60px] right-3 shadow-md ">
                   <ul className="grid grid-cols justify-start items-start text-lg divide-y">
                     <Link
-                      to="/profile"
+                      to="/user/profile"
                       className="px-4 py-2 transition duration-150 ease-in hover:bg-slate-100 w-full"
+                      onClick={() => setShowInfo(!showInfo)}
                     >
-                      Profile Info
+                      Personal details
+                    </Link>
+                    <Link
+                      to="/manage-account"
+                      className="px-4 py-2 transition duration-150 ease-in hover:bg-slate-100 w-full"
+                      onClick={() => setShowInfo(!showInfo)}
+                    >
+                      Manage account
                     </Link>
                     <button
                       className="px-4 py-2 text-slate-800 transition duration-150 ease-in hover:bg-slate-100 w-full text-left"

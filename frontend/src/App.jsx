@@ -13,8 +13,9 @@ import { signOut } from "firebase/auth";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
-import UpdateProfile from "./pages/UpdateProfile";
+import UpdateUserDetails from "./pages/UpdateUserDetails";
 
+//SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
 
 function App() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -24,6 +25,7 @@ function App() {
     setCurrentUser(null)
     setShowInfo(false)
   };
+
   return (
     
     <div className="App">
@@ -39,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/user/profile"
             element={
               <ProtectRoutes user={currentUser}>
                 <Profile />
@@ -47,14 +49,13 @@ function App() {
             }
           />
           <Route
-            path="/update-profile"
+            path="/user/profile/update-user-details"
             element={
               <ProtectRoutes user={currentUser}>
-                <UpdateProfile />
+                <UpdateUserDetails />
               </ProtectRoutes>
             }
           />
-          {/* <Route path="/" element={user ? <Home /> : <Navigate to="/landing-page" />} /> */}
           <Route
             path="/landing-page"
             element={
