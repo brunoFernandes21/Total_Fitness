@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase/firebase.js";
 import { updateProfile } from "firebase/auth";
 
+
+
 const UpdateUserDetails = () => {
-  const { currentUser, setCurrentUser, setUserName } = useContext(UserContext);
+  const { currentUser, setUserName } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,6 +30,7 @@ const UpdateUserDetails = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if(formData.name !== "" || formData.avatar !== ""){
       setError(null)
       try {
@@ -85,7 +88,6 @@ const UpdateUserDetails = () => {
           className="block text-black border border-grey-light w-full p-3 rounded mb-4"
           name="avatar"
           id="avatar"
-          
           placeholder="Leave blank to keep the same"
           value={formData.avatar}
           onChange={handleChange}

@@ -15,14 +15,17 @@ export const UserProvider = ({ children }) => {
         setCurrentUser(currentUser)
         setUserName(currentUser.displayName)
         setLoading(false)
+      } else {
+        setLoading(false)
       }
     });
     return unsubscribe
   }, [currentUser]);
-
+  
   return (
     <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, loading, setLoading }}>
-      {children}
+      {!loading && children}
+      {loading && <h1>Loading...</h1>}
     </UserContext.Provider>
   );
 };

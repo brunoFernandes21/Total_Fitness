@@ -70,7 +70,7 @@ const Login = () => {
             <span className="font-bold">{error}</span>
           </div>
         )}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="flex flex-col">
         <label htmlFor="email">Email</label>
         <input
           type="text"

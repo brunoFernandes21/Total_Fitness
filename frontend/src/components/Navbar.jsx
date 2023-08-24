@@ -4,7 +4,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 const Navbar = ({ logout, showInfo, setShowInfo }) => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, userPhoto } = useContext(UserContext);
   const [welcomeMessage, setWelcomeMessage] = useState(null);
 
   useEffect(() => {
@@ -44,8 +44,8 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
                 className="text-lg text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center"
                 onClick={() => setShowInfo(!showInfo)}
               >
-                {currentUser.photoURL}
-                {!currentUser.photoURL && <BiSolidUserCircle className="w-10 h-10 text-white" />}
+                {/* {currentUser.photoURL} */}
+                {currentUser.photoURL && <BiSolidUserCircle className="w-10 h-10 text-white" />}
               </button>
 
               {showInfo && (

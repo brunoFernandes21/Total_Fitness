@@ -4,13 +4,10 @@ import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from '../components/WorkoutForm'
 import {WorkoutContext} from "../contexts/WorkoutContext"
 import Modal from '../components/Modal'
-import { UserContext } from "../contexts/UserContext";
 
 const Home = () => {
   const { workouts, setWorkouts} = useContext(WorkoutContext)
-  const {loading, setLoading} = useContext(UserContext);
-
-  // const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [deletedWorkout, setDeletedWorkout] = useState({})
