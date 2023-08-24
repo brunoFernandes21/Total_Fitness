@@ -40,7 +40,6 @@ const UpdateAccountDetails = () => {
         setLoading(true);
         setError(null);
         setMessage(null);
-        console.log("fired");
         try {
           await updateEmail(auth.currentUser, formData.newEmail);
           await sendEmailVerification(auth.currentUser);
