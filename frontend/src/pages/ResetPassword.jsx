@@ -29,7 +29,6 @@ const ResetPassword = () => {
           await sendPasswordResetEmail(auth, email);
           setEmail("")
           setMessage("Check your email for instructions");
-          console.log("Password reset email sent!");
         } catch (error) {
           setError("Invalid email address");
           setLoading(false);
