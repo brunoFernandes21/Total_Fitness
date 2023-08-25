@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import section2 from "../assets/images//workout-01.jpg"
 const LandingPage = () => {
   return (
-    <main className="mt-0 md:mt-14 py-4 h-auto mb-16 lg:mb-20">
+    <main className="mt-0 md:mt-14 py-4 h-auto">
       <section className="flex flex-col md:justify-center md:items-center lg:mt-6 lg:flex lg:flex-row lg:justify-start lg:items-start">
         <div className="flex flex-col md:justify-center md:items-center lg:flex lg:justify-start lg:items-start lg:mt-16">
           <h1 className="text-3xl font-bold w-[28rem] md:w-[36rem] md:text-center md:text-6xl lg:text-left">
@@ -24,7 +24,9 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="mt-10 lg:mt-40 flex flex-col md:justify-center md:items-center lg:flex lg:flex-row lg:justify-start lg:items-start">
+      <hr className="my-10 md:mx-auto w-[27.8rem] md:w-[36rem] border-slate-200 lg:hidden text-2xl"/>
+
+      <section className=" lg:mt-40 flex flex-col md:justify-center md:items-center lg:flex lg:flex-row lg:justify-start lg:items-start">
         <div className="flex flex-col md:justify-center md:items-center lg:flex lg:justify-start lg:items-start lg:mt-20">
           <h2 className="text-xl font-bold w-[28rem] md:w-[36rem] md:text-center md:text-4xl lg:text-left">
           The body achieves what the mind believes.
@@ -40,17 +42,6 @@ const LandingPage = () => {
           <img src={section2} alt="A rack full of dumbells" className="rounded-md shadow-md w-[27.8rem] md:w-[36rem] lg:w-[85%] " />
         </div>
       </section>
-
-      {/* <section className="mt-12">
-        <h2 className="text-2xl font-bold w-[28rem] md:w-[36rem] md:text-center md:text-6xl lg:text-left">The body achieves what the mind believes.</h2>
-        <p className="mt-1">
-          See a breakdown of calories and nutrients, compare serving sizes, and
-          discover how the food you eat supports your goals.
-        </p>
-        <div>
-          <img src={section2} alt="A bowl of cereal" />
-        </div>
-      </section> */}
     </main>
   );
 };

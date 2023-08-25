@@ -33,7 +33,7 @@ function App() {
     
     <div className="App">
       <Navbar user={currentUser} logout={logout} showInfo={showInfo} setShowInfo={setShowInfo} />
-      <div className="max-w-[1200px] px-5 m-auto  text-slate-800">
+      <div className="max-w-[1200px] px-5 m-auto text-slate-800">
         <Routes>
           <Route
             path="/"
