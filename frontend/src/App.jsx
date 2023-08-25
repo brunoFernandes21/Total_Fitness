@@ -16,6 +16,7 @@ import PersonalDetails from "./pages/PersonalDetails";
 import UpdateUserDetails from "./pages/UpdateUserDetails";
 import AccountDetails from "./pages/AccountDetails";
 import UpdateAccountDetails from "./pages/UpdateAccountDetails";
+import Footer from "./components/Footer";
 
 //SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
 
@@ -109,6 +110,7 @@ function App() {
           <Route path='*' element={<NotFound />}/>
         </Routes>
       </div>
+      <Footer/>
     </div>
   );
 }
