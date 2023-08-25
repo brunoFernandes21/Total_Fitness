@@ -72,7 +72,7 @@ const Login = () => {
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
         </div>
-        <h1 className="mb-6 text-3xl text-center">Login</h1>
+        <h1 className="mb-6 text-3xl text-center">Login to your account</h1>
         {error && (
           <div className="bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded flex justify-center">
             <span className="font-bold">{error}</span>
@@ -105,7 +105,7 @@ const Login = () => {
             disabled={loading}
             className="signup__btn text-white w-full text-center py-3 rounded-md my-1 "
           >
-            Login to your account
+            Login
           </button>
           <div className="mt-3 text-center text-slate-800">
             <span>Forgotten Password? </span>
