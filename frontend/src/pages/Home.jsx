@@ -28,7 +28,7 @@ const Home = () => {
     }
     getAllWorkouts()
   },[])
-  console.log(workouts)
+
   const onDelete = async (id) => {
     try {
       const response = await deleteWorkout(id)
@@ -49,12 +49,13 @@ const Home = () => {
     <div className='home'>
       <Modal showModal={showModal} setShowModal={setShowModal} deletedWorkout={deletedWorkout}/>
         <div className='workouts'>
+        <h1 className="font-black text-xl">Workouts feed</h1>
         {!loading && workouts.map((workout) => (
           <WorkoutDetails key={workout._id} workout={workout} onDelete={onDelete}/>
         ))}
         {loading && <h1>Loading workouts...</h1>}
         </div>
-        <div className="workout__form md:mt-5 sticky top-24 self-start">
+        <div className="workout__form md:mt-12 sticky top-24 self-start">
         <WorkoutForm/>
       </div>
     </div>

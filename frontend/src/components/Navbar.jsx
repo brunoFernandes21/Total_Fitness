@@ -29,7 +29,7 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
     //className="sticky top-0 z-30" -add this to make nav fixed
     <header className="sticky top-0 z-30 bg-white">
       <nav className="nav max-w-[1200px] flex justify-between items-center m-auto py-3 px-4 md:py-5 relative">
-        <Link to={"/"}>
+        <Link to={"/"} onClick={() => setShowInfo(!showInfo)}>
           <h1 className="text-xl md:text-2xl text-blue-700 transition duration-150 ease-in hover:text-blue-500 font-black">
             TotalFitness
           </h1>

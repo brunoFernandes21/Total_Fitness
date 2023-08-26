@@ -1,16 +1,19 @@
 import { useState, useContext } from "react";
 //context api
 import { WorkoutContext } from '../contexts/WorkoutContext'
+import { UserContext } from "../contexts/UserContext";
 import FormHeader from "./FormHeader";
 import { postWorkout } from "../api";
 
 const WorkoutForm = () => {
-  const [ formData, setFormData] = useState({ title: "", load: "", reps: "" });
+  const { currentUser } = useContext(UserContext);
+  const [ formData, setFormData] = useState({ title: "", load: "", reps: "", userId: currentUser.uid, userName: currentUser.displayName });
   const [ isLoading, setIsLoading] = useState(false);
   const [ error, setError] = useState(null);
   const { workouts, setWorkouts } = useContext(WorkoutContext)
   const [ showForm, setShowForm ] = useState(false)
   const [ emptyFields, setEmptyFields ] = useState([])
+
 
 
   const handleChange = (event) => {
@@ -47,6 +50,7 @@ const WorkoutForm = () => {
     setShowForm(!showForm)
     setError(null)
   }
+
   //add for adjust size of form mt-5 mb-60
   return (
     <div className="create rounded-lg p-5">

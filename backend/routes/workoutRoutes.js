@@ -11,7 +11,7 @@ const {
 //Get all workouts
 router.get("/", getAllWorkouts)
 //GET WORKOUTS BY USER
-router.get("/", getWorkoutsById)
+router.get("/:id", getWorkoutsById)
 //GET a single workout
 router.get("/:id", getSingleWorkout)
 // POST a new workout
