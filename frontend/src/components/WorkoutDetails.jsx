@@ -2,7 +2,8 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const WorkoutDetails = ({ workout, onDelete }) => {
-  const { _id, title, load, reps, createdAt } = workout;
+  const { _id, title, load, reps, userName, createdAt } = workout;
+
   return (
     <div className="workout__details">
       <h3 className="font-bold">{title}</h3>
@@ -17,6 +18,10 @@ const WorkoutDetails = ({ workout, onDelete }) => {
         <p>
           <strong>Reps: </strong>
           {reps}
+        </p>
+        <p>
+          <strong>Created by: </strong>
+          {userName}
         </p>
         <p>
           <strong>Created: </strong>

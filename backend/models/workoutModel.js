@@ -15,7 +15,11 @@ const workoutSchema = new Schema({
         type: Number,
         required: true
     },
-    user: {
+    userName: {
+        type: String,
+        required: true
+    },
+    userId: {
         type: String,
         required: true
     }

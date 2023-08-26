@@ -10,10 +10,11 @@ const getAllWorkouts = async (request, response) => {
     response.status(400).send({ error: error.message });
   }
 };
+
 const getWorkoutsById = async (request, response) => {
-  const { id } = request.body
+  const { id } = request.params
   try {
-    const workouts = await Workout.find({id}).sort({ createdAt: -1 });
+    const workouts = await Workout.find({userId: id}).sort({ createdAt: -1 });
     response.status(200).send({ workouts });
   } catch (error) {
     response.status(400).send({ error: error.message });
@@ -41,7 +42,7 @@ const getSingleWorkout = async (request, response) => {
 
 //CREATE a new workout
 const createWorkout = async (request, response) => {
-  const { title, load, reps, user } = request.body;
+  const { title, load, reps, userId, userName } = request.body;
 
   const emptyFields = []
 
@@ -60,7 +61,7 @@ const createWorkout = async (request, response) => {
   }
 
   try {
-    const newWorkout = await Workout.create({ title, load, reps, user });
+    const newWorkout = await Workout.create({ title, load, reps, userId, userName});
     response.status(200).send(newWorkout);
   } catch (error) {
      
