@@ -64,10 +64,10 @@ const Login = () => {
   return (
     <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
       <div className="border px-6 py-8 rounded shadow-md text-slate-800 w-full flex flex-col">
-        <div className="flex flex-col gap-4 mb-4">
+        <div className="mb-4">
           <button
             onClick={handleGoogleAuth}
-            className="google flex gap-2 text-white p-4 w-full font-medium rounded-full"
+            className="google flex gap-2 text-white py-3 px-4 w-full font-medium rounded-full"
           >
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
@@ -82,7 +82,7 @@ const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             type="text"
-            className="block border border-grey-light w-full p-3 rounded-md mb-4 text-black"
+            className="block bg-slate-100 border border-grey-light w-full p-3 rounded-md mb-4 text-black"
             name="email"
             id="email"
             placeholder="Email"
@@ -93,7 +93,7 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            className="block border border-grey-light w-full text-black p-3 rounded-md mb-4"
+            className="block bg-slate-100 border border-grey-light w-full text-black p-3 rounded-md mb-4"
             name="password"
             id="password"
             value={formData.password}

@@ -17,6 +17,7 @@ import UpdateUserDetails from "./pages/UpdateUserDetails";
 import AccountDetails from "./pages/AccountDetails";
 import UpdateAccountDetails from "./pages/UpdateAccountDetails";
 import Footer from "./components/Footer";
+import Workouts from "./pages/Workouts";
 
 //SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
 
@@ -33,7 +34,7 @@ function App() {
     
     <div className="App">
       <Navbar user={currentUser} logout={logout} showInfo={showInfo} setShowInfo={setShowInfo} />
-      <div className="max-w-[1200px] px-5 m-auto text-slate-800">
+      <div className="max-w-[1200px] p-5 m-auto text-slate-800">
         <Routes>
           <Route
             path="/"
@@ -76,6 +77,14 @@ function App() {
             }
           />
           <Route
+            path="/user/workouts"
+            element={
+              <ProtectRoutes user={currentUser}>
+                <Workouts />
+              </ProtectRoutes>
+            }
+          />
+          <Route
             path="/landing-page"
             element={
               <UnProtectedRoutes user={currentUser}>
@@ -110,7 +119,7 @@ function App() {
           <Route path='*' element={<NotFound />}/>
         </Routes>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

@@ -101,10 +101,10 @@ const Register = () => {
   return (
     <div className="container max-w-lg mx-auto  px-2">
       <div className="border px-6 py-8 rounded shadow-md w-full">
-        <div className="flex flex-col gap-4 mb-4">
+        <div className="mb-4">
           <button
             onClick={handleGoogleAuth}
-            className="google flex gap-2 text-white bg-gray-700 p-4 w-full font-medium rounded-full"
+            className="google flex gap-2 text-white bg-gray-700 py-3 px-4 w-full font-medium rounded-full"
           >
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
@@ -124,7 +124,7 @@ const Register = () => {
           <label htmlFor="username">Username</label>
           <input
             type="text"
-            className="block text-black border border-grey-light w-full p-3 rounded-md mb-4"
+            className="block bg-slate-100 text-black border border-grey-light w-full p-3 rounded-md mb-4"
             name="username"
             id="username"
             value={formData.username}
@@ -135,7 +135,7 @@ const Register = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            className="block text-black border border-grey-light w-full p-3 rounded-md mb-4"
+            className="block bg-slate-100 text-black border border-grey-light w-full p-3 rounded-md mb-4"
             name="email"
             id="email"
             value={formData.email}
@@ -148,7 +148,7 @@ const Register = () => {
             type="password"
             className={`${
               passwordError ? " border-red-600" : ""
-            } block text-black border border-grey-light w-full p-3 rounded-md mb-4`}
+            } block bg-slate-100 text-black border border-grey-light w-full p-3 rounded-md mb-4`}
             name="password"
             id="password"
             value={formData.password}
@@ -162,7 +162,7 @@ const Register = () => {
             type="password"
             className={`${
               passwordError ? " border-red-600" : ""
-            } block text-black border border-grey-light w-full p-3 rounded-md mb-4`}
+            } block bg-slate-100 text-black border border-grey-light w-full p-3 rounded-md mb-4`}
             name="confirmPassword"
             id="confirmPassword"
             value={formData.confirmPassword}
