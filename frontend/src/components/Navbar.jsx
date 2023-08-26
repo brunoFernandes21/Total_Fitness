@@ -42,14 +42,16 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
                 {welcomeMessage} <strong>{currentUser.displayName}</strong>
               </p>
               <button
-                className="text-lg text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center"
+                className=" bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center"
                 onClick={() => setShowInfo(!showInfo)}
               >
-                {newPhoto && <img
+                {newPhoto && (
+                  <img
                     src={newPhoto}
                     alt="New user photo"
                     className="w-10 h-10 text-white"
-                  />}
+                  />
+                )}
                 {!newPhoto && currentUser.photoURL && (
                   <img
                     src={currentUser.photoURL}
@@ -63,24 +65,60 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
               </button>
 
               {showInfo && (
-                <div className="bg-white rounded-md absolute top-[60px] right-3 shadow-md ">
-                  <ul className="grid grid-cols justify-start items-start text-lg divide-y">
+                <div className="bg-white rounded-md absolute top-[52px] md:top-[60px] right-4 shadow-md border">
+                  <div className="p-4 flex gap-4 justify-center items-center">
+                    <div className=" text-lg text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center">
+                      {newPhoto && (
+                        <img
+                          src={newPhoto}
+                          alt="New user photo"
+                          className="w-10 h-10 text-white"
+                        />
+                      )}
+                      {!newPhoto && currentUser.photoURL && (
+                        <img
+                          src={currentUser.photoURL}
+                          alt="New user photo"
+                          className="w-10 h-10 text-white"
+                        />
+                      )}
+                      {!currentUser.photoURL && (
+                        <BiSolidUserCircle className="w-10 h-10 text-white" />
+                      )}
+                    </div>
+                    <div>
+                      <p>{currentUser.displayName}</p>
+                      <p>{currentUser.email}</p>
+                    </div>
+                  </div>
+
+                  <hr className=" border-2" />
+
+                  <ul className=" flex flex-col justify-start items-start text-lg divide-y">
+                    <Link
+                      to="/user/workouts"
+                      className="px-4 py-4 transition duration-150 ease-in hover:bg-slate-100 inline-block w-full"
+                      onClick={() => setShowInfo(!showInfo)}
+                    >
+                      My workouts
+                    </Link>
                     <Link
                       to="/user/personal-details"
-                      className="px-4 py-2 transition duration-150 ease-in hover:bg-slate-100 w-full"
+                      className="px-4 py-4 transition duration-150 ease-in hover:bg-slate-100 inline-block w-full"
                       onClick={() => setShowInfo(!showInfo)}
                     >
                       Personal details
                     </Link>
+
                     <Link
                       to="/user/account-details"
-                      className="px-4 py-2 transition duration-150 ease-in hover:bg-slate-100 w-full"
+                      className="px-4 py-4 transition duration-150 ease-in hover:bg-slate-100 w-full"
                       onClick={() => setShowInfo(!showInfo)}
                     >
                       Manage account
                     </Link>
                     <button
-                      className="px-4 py-2 text-slate-800 transition duration-150 ease-in hover:bg-slate-100 w-full text-left"
+                      className="px-4 py-4 text-red-600 transition duration-150 ease-in hover:bg-slate-100 w-full text-left"
                       onClick={logout}
                     >
                       Sign Out

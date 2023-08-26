@@ -69,7 +69,7 @@ const UpdateAccountDetails = () => {
   };
 
   return (
-    <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
+    <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-5">
       <form
         className="border px-6 py-8 rounded shadow-md w-full"
         onSubmit={handleSubmit}
@@ -89,7 +89,7 @@ const UpdateAccountDetails = () => {
         <label htmlFor="currentEmail">Current Email</label>
         <input
           type="email"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          className="block bg-slate-100 text-slate-400 border border-grey-light w-full p-3 rounded mb-4"
           name="currentEmail"
           id="currentEmail"
           placeholder="Leave blank to keep the same"
@@ -99,7 +99,7 @@ const UpdateAccountDetails = () => {
         <label htmlFor="newEmail">New Email</label>
         <input
           type="email"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          className="block bg-slate-100 text-black border border-grey-light w-full p-3 rounded mb-4"
           name="newEmail"
           id="newEmail"
           placeholder="Leave blank to keep the same"
@@ -109,7 +109,7 @@ const UpdateAccountDetails = () => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          className="block bg-slate-100 text-black border border-grey-light w-full p-3 rounded mb-4"
           name="password"
           id="password"
           placeholder="Leave blank to keep the same"

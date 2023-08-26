@@ -77,25 +77,12 @@ const UpdateUserDetails = () => {
   };
 
   return (
-    <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
+    <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-5 md:px-0">
       <form
         className="border px-6 py-8 rounded shadow-md w-full"
         onSubmit={handleSubmit}
       >
         <h1 className="mb-6 text-3xl text-center">Update Details</h1>
-
-          <div className="text-lg mx-auto text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center">
-            {currentUser.photoURL && (
-              <img
-                src={currentUser.photoURL}
-                alt="New user photo"
-                className="w-10 h-10 text-white"
-              />
-            )}
-            {!currentUser.photoURL && !currentUser && (
-              <BiSolidUserCircle className="w-10 h-10 text-white" />
-            )}
-          </div>
 
         {error && (
           <div className='bg-red-100 border flex justify-center mb-5 border-red-400 text-red-700 px-4 py-3 mt-4 rounded "'>
@@ -107,23 +94,37 @@ const UpdateUserDetails = () => {
             <span className="font-bold">{message}</span>
           </div>
         )}
+           <div className="text-lg mx-auto text-slate-800 transition duration-150 ease-in font-bold bg-blue-700 w-20 h-20 rounded-full overflow-hidden flex justify-center items-center">
+            {currentUser.photoURL && (
+              <img
+                src={currentUser.photoURL}
+                alt="New user photo"
+                className="w-20 h-20 text-white"
+              />
+            )}
+            {!currentUser.photoURL && (
+              <BiSolidUserCircle className="w-20 h-20 text-white" />
+            )}
+          </div>
 
-        <label htmlFor="avatar">Avatar</label>
-       
+        <div className="flex justify-center mt-4">
+        <label htmlFor="avatar" className="inline-block mb-4 p-2 rounded-md border cursor-pointer bg-blue-700 text-white">Upload avatar
         <input
           type="file"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          className="hidden  border border-grey-light w-full p-3 rounded mb-4"
           name="avatar"
           id="avatar"
           accept="image/png,image/jpeg"
           placeholder="Leave blank to keep the same"
           onChange={(e) => setAvatar(e.target.files[0])}
         />
+        </label>
+        </div>
 
         <label htmlFor="name">Name</label>
         <input
           type="name"
-          className="block text-black border border-grey-light w-full p-3 rounded mb-4"
+          className="block bg-slate-100 text-black border border-grey-light w-full p-3 rounded mb-4"
           name="name"
           id="name"
           placeholder="Leave blank to keep the same"
@@ -140,7 +141,7 @@ const UpdateUserDetails = () => {
 
         <div className="text-grey-dark mt-4 text-center">
           <Link className="hover:underline text-xl" to="/user/personal-details">
-            <p>Cancel</p>
+            Cancel
           </Link>
         </div>
       </form>

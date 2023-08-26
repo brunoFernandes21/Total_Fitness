@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
     });
     return unsubscribe
   }, [currentUser]);
-  console.log(newPhoto)
+
   return (
     <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, newPhoto, setNewPhoto}}>
       {/* {children} */}
