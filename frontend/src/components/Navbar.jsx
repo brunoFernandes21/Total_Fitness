@@ -38,8 +38,11 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
         <div className=" flex justify-center items-center gap-6 ">
           {currentUser && (
             <div className="flex justify-center items-center gap-4">
-              <p>
+              <p className="hidden md:flex gap-2">
                 {welcomeMessage} <strong>{currentUser.displayName}</strong>
+              </p>
+              <p className="md:hidden gap-2">
+                Hello, <strong>{currentUser.displayName}</strong>
               </p>
               <button
                 className=" bg-blue-700 w-10 h-10 rounded-full overflow-hidden flex justify-center items-center"

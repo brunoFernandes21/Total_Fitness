@@ -3,6 +3,7 @@ import { fetchWorkoutsById, deleteWorkout } from "../api";
 import { UserContext } from "../contexts/UserContext";
 import WorkoutDetails from "../components/WorkoutDetails";
 import Modal from "../components/Modal";
+import LoadingPage from "../components/Loading";
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -64,7 +65,7 @@ const Workouts = () => {
               onDelete={onDelete}
             />
           ))}
-        {loading && <h1>Loading workouts...</h1>}
+        {loading && <LoadingPage/>}
       </div>
     </div>
   );

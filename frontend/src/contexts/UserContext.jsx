@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
-
+import LoadingPage from "../components/Loading.jsx";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, newPhoto, setNewPhoto}}>
       {/* {children} */}
       {!loading && children}
-      {loading && <h1>Loading...</h1>}
+      {loading && <LoadingPage/>}
     </UserContext.Provider>
   );
 };
