@@ -9,6 +9,11 @@ export const fetchAllWorkouts = async () => {
   const workouts = response.data.workouts;
   return workouts;
 };
+export const fetchWorkoutsById = async (id) => {
+  const response = await workoutApi.get(`${id}`);
+  const workouts = response.data.workouts;
+  return workouts;
+};
 
 export const postWorkout = async (newWorkout) => {
     const response = await axios.post(

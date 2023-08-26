@@ -19,7 +19,7 @@ import UpdateAccountDetails from "./pages/UpdateAccountDetails";
 import Footer from "./components/Footer";
 import Workouts from "./pages/Workouts";
 
-//SET UP ACCOUNT DETAILS UPDATE, EMAIL AND PASSWORD
+//TODO: IN MYWORKOUTS PAGE, ONLY FETCH WORKOUTS BY USER ID
 
 function App() {
   const { currentUser, setCurrentUser } = useContext(UserContext);

@@ -28,7 +28,7 @@ const Home = () => {
     }
     getAllWorkouts()
   },[])
-
+  console.log(workouts)
   const onDelete = async (id) => {
     try {
       const response = await deleteWorkout(id)
