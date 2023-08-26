@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true)
   const [userName, setUserName] = useState(null)
-
+  const [newPhoto, setNewPhoto] = useState(null);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -21,9 +21,9 @@ export const UserProvider = ({ children }) => {
     });
     return unsubscribe
   }, [currentUser]);
-  
+  console.log(newPhoto)
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName}}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, userName, setUserName, newPhoto, setNewPhoto}}>
       {/* {children} */}
       {!loading && children}
       {loading && <h1>Loading...</h1>}

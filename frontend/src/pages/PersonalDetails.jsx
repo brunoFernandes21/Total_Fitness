@@ -17,14 +17,7 @@ const PersonalDetails = () => {
           <strong>Personal Details</strong>
         </h1>
         <div className="grid md:grid-cols-2 md:gap-4">
-          <div className="py-4">
-            <p><strong>Name</strong></p>
-            <div className="bg-slate-100 p-4 rounded-md mt-2">
-            <p>
-              {currentUser.displayName}
-            </p>
-            </div>
-          </div>
+
           <div className="py-4">
           <strong>Avatar</strong>
           <div className="bg-slate-100 p-4 rounded-md mt-2">
@@ -32,6 +25,14 @@ const PersonalDetails = () => {
               Default Avatar
             </p>
           </div>
+          </div>
+          <div className="py-4">
+            <p><strong>Name</strong></p>
+            <div className="bg-slate-100 p-4 rounded-md mt-2">
+            <p>
+              {currentUser.displayName}
+            </p>
+            </div>
           </div>
         </div>
           <button
