@@ -54,7 +54,7 @@ const Home = () => {
         ))}
         {loading && <h1>Loading workouts...</h1>}
         </div>
-        <div className="workout__form mt-5 sticky top-24 self-start">
+        <div className="workout__form md:mt-5 sticky top-24 self-start">
         <WorkoutForm/>
       </div>
     </div>
