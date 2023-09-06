@@ -115,11 +115,14 @@ const Login = () => {
             <span> to reset it.</span>
           </div>
           <hr className="my-6" />
-          <button className=" p-3 w-[60%] m-auto rounded-md bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-center text-lg text-white">
-            <Link to="/register">
-              <span> Create New Acccount</span>
-            </Link>
-          </button>
+          <div className="text-center m-0 p-0">
+            <p>Do not have an account?</p>
+            <button className="py-3 w-[60%] mt-2 rounded-md bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-center text-white">
+              <Link className="font-black" to="/register">
+                <span>Create New Account</span>
+              </Link>
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -29,7 +29,7 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
     //className="sticky top-0 z-30" -add this to make nav fixed
     <header className="sticky top-0 z-30 bg-white">
       <nav className="nav max-w-[1200px] flex justify-between items-center m-auto py-3 px-4 md:py-5 relative">
-        <Link to={"/"} onClick={() => setShowInfo(!showInfo)}>
+        <Link to={"/"} onClick={() => setShowInfo(false)}>
           <h1 className="text-xl md:text-2xl text-blue-700 transition duration-150 ease-in hover:text-blue-500 font-black">
             TotalFitness
           </h1>
@@ -41,7 +41,7 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
               <p className="hidden md:flex gap-2">
                 {welcomeMessage} <strong>{currentUser.displayName}</strong>
               </p>
-              <p className="md:hidden gap-2">
+              <p className="md:hidden">
                 Hello, <strong>{currentUser.displayName}</strong>
               </p>
               <button

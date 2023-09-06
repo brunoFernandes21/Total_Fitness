@@ -11,6 +11,10 @@ const WorkoutDetails = ({ workout, onDelete }) => {
         <FaRegTrashAlt onClick={() => onDelete(_id)} style={{ color: "red" }} />
       </span>
       <div className="grid gap-2 mt-4">
+      <p>
+          <strong>Created by: </strong>
+          {userName}
+        </p>
         <p>
           <strong>Load: </strong>
           {load}kg
@@ -18,10 +22,6 @@ const WorkoutDetails = ({ workout, onDelete }) => {
         <p>
           <strong>Reps: </strong>
           {reps}
-        </p>
-        <p>
-          <strong>Created by: </strong>
-          {userName}
         </p>
         <p>
           <strong>Created: </strong>

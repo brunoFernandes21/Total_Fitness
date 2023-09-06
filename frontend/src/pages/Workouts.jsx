@@ -54,8 +54,8 @@ const Workouts = () => {
       />
       <div className="workouts">
       
-        {workouts.length === 0 && <h1 className="font-black text-xl">No workouts yet. Your workouts will appear here</h1>}
-        {workouts.length > 0 && <h1 className="font-black text-xl">My workouts</h1>}
+        {workouts.length === 0 && <h1 className="font-black text-xl text-slate-500">No workouts yet. Your workouts will appear here</h1>}
+        {workouts.length > 0 && <h1 className="font-black text-xl text-slate-500">My workouts</h1>}
       
         {!loading &&
           workouts.map((workout) => (

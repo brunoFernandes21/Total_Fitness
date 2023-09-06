@@ -52,7 +52,7 @@ const Home = () => {
         deletedWorkout={deletedWorkout}
       />
       <div className="workouts">
-        <h1 className="font-black text-xl">Workouts feed</h1>
+        <h1 className="font-black text-xl text-slate-500">Workouts feed</h1>
         {!loading &&
           workouts.map((workout) => (
             <WorkoutDetails
