@@ -53,10 +53,15 @@ const Workouts = () => {
         deletedWorkout={deletedWorkout}
       />
       <div className="workouts">
-      
-        {workouts.length === 0 && <h1 className="font-black text-xl text-slate-500">No workouts yet. Your workouts will appear here</h1>}
-        {workouts.length > 0 && <h1 className="font-black text-xl text-slate-500">My workouts</h1>}
-      
+        {workouts.length === 0 && (
+          <h1 className="font-black text-xl text-slate-500">
+            No workouts yet. Your workouts will appear here
+          </h1>
+        )}
+        {workouts.length > 0 && (
+          <h1 className="font-black text-xl text-slate-500">My workouts</h1>
+        )}
+
         {!loading &&
           workouts.map((workout) => (
             <WorkoutDetails
@@ -65,7 +70,7 @@ const Workouts = () => {
               onDelete={onDelete}
             />
           ))}
-        {loading && <LoadingPage/>}
+        {loading && <LoadingPage />}
       </div>
     </div>
   );
