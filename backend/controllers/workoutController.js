@@ -3,14 +3,16 @@ const mongoose = require("mongoose");
 
 //GET all workouts
 const getAllWorkouts = async (request, response) => {
+  const page = request.query.page || 0
+  const booksPerPage = 5
   try {
-    const workouts = await Workout.find({}).sort({ createdAt: -1 });
+    const workouts = await Workout.find({}).sort({ createdAt: -1 }).skip(page * booksPerPage).limit(booksPerPage);
     response.status(200).send({ workouts });
   } catch (error) {
     response.status(400).send({ error: error.message });
   }
 };
-
+//Get workouts by user Id
 const getWorkoutsById = async (request, response) => {
   const { id } = request.params
   try {

@@ -28,6 +28,7 @@ const Home = () => {
     };
     getAllWorkouts();
   }, []);
+  console.log(workouts.length)
 
   const onDelete = async (id) => {
     try {

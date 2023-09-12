@@ -34,7 +34,7 @@ const WorkoutForm = () => {
         const workout = await postWorkout(formData)
         setShowForm(false)
         setWorkouts([workout, ...workouts])
-        setFormData({ title: "", load: "", reps: "" });
+        setFormData({ title: "", load: "", reps: "", userId: currentUser.uid, userName: currentUser.displayName  });
         setIsLoading(false)
         setError(null)
         setEmptyFields([])
