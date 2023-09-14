@@ -4,9 +4,10 @@ const workoutApi = axios.create({
   baseURL: "http://localhost:8000/api/workouts/",
 });
 
-export const fetchAllWorkouts = async () => {
-  const response = await workoutApi.get();
+export const fetchAllWorkouts = async (page) => {
+  const response = await workoutApi.get(`?page=${page}`);
   const workouts = response.data.workouts;
+  console.log(workouts.length, "length")
   return workouts;
 };
 export const fetchWorkoutsById = async (id) => {
