@@ -7,7 +7,6 @@ const workoutApi = axios.create({
 export const fetchAllWorkouts = async (page) => {
   const response = await workoutApi.get(`?page=${page}`);
   const workouts = response.data.workouts;
-  console.log(workouts.length, "length")
   return workouts;
 };
 export const fetchWorkoutsById = async (id) => {
