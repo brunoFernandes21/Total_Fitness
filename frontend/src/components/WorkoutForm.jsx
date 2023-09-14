@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-//context api
 import { WorkoutContext } from '../contexts/WorkoutContext'
 import { UserContext } from "../contexts/UserContext";
 import FormHeader from "./FormHeader";
@@ -32,7 +31,7 @@ const WorkoutForm = () => {
     setError(null)
     try {
         const workout = await postWorkout(formData)
-        setShowForm(false)
+        // setShowForm(false)
         setWorkouts([workout, ...workouts])
         setFormData({ title: "", load: "", reps: "", userId: currentUser.uid, userName: currentUser.displayName  });
         setIsLoading(false)
@@ -48,6 +47,8 @@ const WorkoutForm = () => {
 
   const showAddForm = () => {
     setShowForm(!showForm)
+    setFormData({ title: "", load: "", reps: "", userId: currentUser.uid, userName: currentUser.displayName  });
+    setEmptyFields([])
     setError(null)
   }
 
