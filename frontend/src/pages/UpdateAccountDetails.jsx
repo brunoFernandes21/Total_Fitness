@@ -6,8 +6,8 @@ import { auth } from "../firebase/firebase.js";
 import {
   updateEmail,
   updatePassword,
-  sendEmailVerification,
-  sendPasswordResetEmail,
+  // sendEmailVerification,
+  // sendPasswordResetEmail,
 } from "firebase/auth";
 
 const UpdateAccountDetails = () => {
@@ -36,35 +36,42 @@ const UpdateAccountDetails = () => {
     event.preventDefault();
 
     if (formData.newEmail !== "" || formData.password !== "") {
-      if (currentUser.email !== formData.newEmail) {
+      if (formData.newEmail !== "" && currentUser.email !== formData.newEmail) {
         setLoading(true);
         setError(null);
         setMessage(null);
         try {
           await updateEmail(auth.currentUser, formData.newEmail);
-          await sendEmailVerification(auth.currentUser);
+          // await sendEmailVerification(auth.currentUser);
+          setMessage("Email updated!");
           setLoading(false);
+          setTimeout(() => {
+            navigate("/user/account-details");
+          }, 3000);
         } catch (error) {
-          setLoading(true);
+          setLoading(false);
           setError("Unable to update details");
         }
       }
 
-      if (currentUser.password !== formData.password) {
+      if (formData.password !== "" && currentUser.password !== formData.password) {
         setLoading(true);
         setError(null);
         setMessage(null);
         try {
           await updatePassword(currentUser, formData.password);
-          await sendPasswordResetEmail(auth, formData.email);
+          // await sendPasswordResetEmail(auth, formData.email);
+          setMessage("Password updated successfully!");
           setLoading(false);
+          setTimeout(() => {
+            navigate("/user/account-details");
+          }, 3000);
         } catch (error) {
-          setLoading(true);
+          setLoading(false);
           setError("Unable to update details");
         }
       }
-      setMessage("Check your email for instructions");
-      navigate("/user/account-details");
+      
     }
   };
 
@@ -76,12 +83,12 @@ const UpdateAccountDetails = () => {
       >
         <h1 className="mb-6 text-3xl text-center">Update Details</h1>
         {error && (
-          <div className='bg-red-100 border mb-5 border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"'>
+          <div className='bg-red-100 text-center border mb-5 border-red-400 text-red-700 px-4 py-3 rounded relative'>
             <span className="font-bold">{error}</span>
           </div>
         )}
         {message && (
-          <div className='bg-green-100 border mb-5 border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert"'>
+          <div className='bg-green-100 text-center border mb-5 border-green-400 text-green-700 px-4 py-3 rounded relative"'>
             <span className="font-bold">{message}</span>
           </div>
         )}

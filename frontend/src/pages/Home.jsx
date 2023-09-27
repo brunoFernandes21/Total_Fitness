@@ -5,6 +5,7 @@ import WorkoutForm from "../components/WorkoutForm";
 import { WorkoutContext } from "../contexts/WorkoutContext";
 import Modal from "../components/Modal";
 import LoadingPage from "../components/Loading";
+import EditWorkoutModal from "../components/EditWorkoutModal";
 
 
 const Home = () => {
@@ -12,11 +13,12 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [deletedWorkout, setDeletedWorkout] = useState({});
   const [page, setPage] = useState(1);
   const [lastWorkouts, setLastWorkouts] = useState(false);
   const [loadInitialWorkouts, setLoadInitialWorkouts] = useState(false)
-
+  const [formInfo, setFormInfo] = useState({})
 
   useEffect(() => {
     const getAllWorkouts = async () => {
@@ -43,7 +45,7 @@ const Home = () => {
     try {
       setLoading(true);
       const workouts = await fetchAllWorkouts(page);
-      if (workouts.length < 5) {
+      if (workouts.length < 3) {
         setLastWorkouts(true)
         setLoading(false);
         setError(false);
@@ -58,8 +60,14 @@ const Home = () => {
     }
   };
 
+  const onEdit = async (id, title, load, reps) => {
+    setShowEditModal(true);
+    setFormInfo({id, title, load, reps})
+  }
   const onDelete = async (id) => {
     try {
+      setLoading(true)
+      setError(null)
       const response = await deleteWorkout(id);
       if (response) {
         const filteredWorkouts = workouts.filter((workout) => {
@@ -70,6 +78,7 @@ const Home = () => {
         setShowModal(true);
       }
     } catch (error) {
+      setLoading(false)
       setError(error.response.data.error);
     }
   };
@@ -80,6 +89,11 @@ const Home = () => {
         setShowModal={setShowModal}
         deletedWorkout={deletedWorkout}
       />
+      <EditWorkoutModal 
+      showEditModal={showEditModal}
+      setShowEditModal={setShowEditModal}
+      formInfo={formInfo}
+      />
       <div className="workouts">
         <h1 className="font-black text-xl text-slate-500">Workouts feed</h1>
         {!loading &&
@@ -88,6 +102,7 @@ const Home = () => {
               key={workout._id}
               workout={workout}
               onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
         {loading && <LoadingPage />}

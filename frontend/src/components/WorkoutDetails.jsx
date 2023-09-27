@@ -1,11 +1,12 @@
 import { FaRegTrashAlt } from "react-icons/fa";
+import { BiEdit } from "react-icons/bi";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 
-const WorkoutDetails = ({ workout, onDelete }) => {
+const WorkoutDetails = ({ workout, onDelete, onEdit }) => {
   const { currentUser } = useContext(UserContext);
-  const { _id, title, load, reps, userName, createdAt, userId } = workout;
+  const { _id, title, load, reps, userName, createdAt, updatedAt } = workout;
 
   return (
     <div className="workout__details">
@@ -13,6 +14,11 @@ const WorkoutDetails = ({ workout, onDelete }) => {
       {currentUser.displayName === userName && (
         <span className="delete text-lg transition hover:scale-125 hover:bg-red-200">
         <FaRegTrashAlt onClick={() => onDelete(_id)} style={{ color: "red" }} />
+      </span>
+      )}
+      {currentUser.displayName === userName && (
+        <span className="edit text-xl transition hover:scale-125 hover:bg-slate-200">
+        <BiEdit onClick={() => onEdit(_id, title, load, reps)} style={{ color: "gray" }} />
       </span>
       )}
       <div className="grid gap-2 mt-4">
@@ -32,6 +38,12 @@ const WorkoutDetails = ({ workout, onDelete }) => {
           <strong>Created: </strong>
           {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
         </p>
+        {updatedAt !== createdAt && (
+          <p>
+          <strong>Updated: </strong>
+          {formatDistanceToNow(new Date(updatedAt), { addSuffix: true })}
+        </p>
+        )}
       </div>
     </div>
   );

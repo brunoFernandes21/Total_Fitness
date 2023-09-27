@@ -68,6 +68,17 @@ header {
   /* background: #f5dfdf; */
   border-radius: 50%;
 }
+.edit {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  right: 60px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+}
 
 /* modal  */
 .backdrop {
@@ -126,6 +137,7 @@ input {
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
+  background-color: #ece9e9;
   border-radius: 5px;
   box-sizing: border-box;
   color: black;
@@ -134,7 +146,7 @@ form button {
   border: 0;
   padding: 10px;
   border-radius: 5px;
-  font-weight: 900;
+  /* font-weight: 900; */
   font-family: 'Poppins', sans-serif;;
   cursor: pointer;
   width: 100%;

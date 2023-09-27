@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 //GET all workouts
 const getAllWorkouts = async (request, response) => {
   const page = request.query.page || 0
-  const booksPerPage = 5
+  const booksPerPage = 3
   try {
     const workouts = await Workout.find({}).sort({ createdAt: -1 }).skip(page * booksPerPage).limit(booksPerPage);
     response.status(200).send({ workouts });
