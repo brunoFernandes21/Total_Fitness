@@ -15,7 +15,7 @@ const Login = () => {
   const { setCurrentUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
@@ -46,7 +46,7 @@ const Login = () => {
     const email = formData.email;
     const password = formData.password;
     try {
-      setError("");
+      setError(null);
       setLoading(true);
       const userCredential = await signInWithEmailAndPassword(
         auth,

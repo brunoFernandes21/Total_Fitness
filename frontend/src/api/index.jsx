@@ -23,6 +23,11 @@ export const postWorkout = async (newWorkout) => {
     return response.data
 };
 
+export const updateWorkout = async (id, updatedWorkout) => {
+  const response = await workoutApi.patch(`${id}`, updatedWorkout)
+  return response.data.workout
+}
+
 export const deleteWorkout = async (id) => {
   const response = await workoutApi.delete(`${id}`)
   return response.data.workout
