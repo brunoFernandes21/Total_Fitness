@@ -100,14 +100,14 @@ const updateWorkout = async (request, response) => {
     load: load,
     reps: reps
   }
+  
    // If id is not a valid mongoose idObject return an error
    if (!mongoose.Types.ObjectId.isValid(id)) {
     return response.status(404).send({ error: "Not Found!" });
   }
 
   //find workout with the id, updates it and store the result in workout var
-  const workout = await Workout.findOneAndUpdate({_id: id}, updatedWorkout)
-
+  const workout = await Workout.findOneAndUpdate({_id: id}, updatedWorkout, { new: true})
    //if we could not find the workout with that id, we return an error
    if (!workout) {
     return response.status(404).send({ error: "Not Found!" });

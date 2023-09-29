@@ -7,7 +7,6 @@ import { useContext } from "react";
 const WorkoutDetails = ({ workout, onDelete, onEdit }) => {
   const { currentUser } = useContext(UserContext);
   const { _id, title, load, reps, userName, createdAt, updatedAt } = workout;
-
   return (
     <div className="workout__details">
       <h3 className="font-bold">{title}</h3>
