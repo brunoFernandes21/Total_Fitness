@@ -26,7 +26,7 @@ const modal = {
 
 const EditWorkoutModal = ({ showEditModal, setShowEditModal, formInfo }) => {
   const { currentUser } = useContext(UserContext);
-  const { workouts, setWorkouts } = useContext(WorkoutContext)
+  const { workouts, setWorkouts } = useContext(WorkoutContext);
   const [formData, setFormData] = useState({
     title: "",
     load: "",
@@ -55,22 +55,26 @@ const EditWorkoutModal = ({ showEditModal, setShowEditModal, formInfo }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setShowEditModal(false);
     setError(null);
     setIsLoading(true);
     try {
-     const updatedWorkout = await updateWorkout(formInfo.id, formData);
-      setWorkouts((current) => {
-        return [
-          ...current,
-          updatedWorkout,
-        ]
-      })
+      const updatedWorkout = await updateWorkout(formInfo.id, formData);
+      const newArray = workouts.map((item) => {
+        if (item._id === updatedWorkout._id) {
+          item = updatedWorkout;
+        }
+        return item;
+      });
+      setWorkouts(newArray)
+      setError(null);
+      setIsLoading(false);
+      setShowEditModal(false);
     } catch (error) {
       setIsLoading(false);
       setError("Unable to update workout");
     }
   };
+
   return (
     <AnimatePresence mode="wait">
       {showEditModal && (
@@ -115,11 +119,24 @@ const EditWorkoutModal = ({ showEditModal, setShowEditModal, formInfo }) => {
                 value={formData.reps}
                 onChange={handleChange}
               />
-              {!isLoading && <button>Update Workout</button>}
-              {isLoading && <button disabled>Updating...</button>}
+              {!isLoading && (
+                <button className="bg-blue-700">Update Workout</button>
+              )}
+              {isLoading && (
+                <button disabled className="bg-gray-300">
+                  Updating...
+                </button>
+              )}
             </form>
             <div className="flex justify-center">
-            {!isLoading && <button className="bg-red-500" onClick={()=> setShowEditModal(false)}>Cancel</button>}
+              {!isLoading && (
+                <button
+                  className="bg-red-500"
+                  onClick={() => setShowEditModal(false)}
+                >
+                  Cancel
+                </button>
+              )}
             </div>
           </motion.div>
         </motion.div>
