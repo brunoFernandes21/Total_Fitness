@@ -5,7 +5,7 @@ import WorkoutDetails from "../components/WorkoutDetails";
 import Modal from "../components/Modal";
 import LoadingPage from "../components/Loading";
 
-const Workouts = () => {
+const MyWorkouts = () => {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -76,4 +76,4 @@ const Workouts = () => {
   );
 };
 
-export default Workouts;
+export default MyWorkouts;

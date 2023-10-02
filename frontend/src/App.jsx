@@ -17,7 +17,7 @@ import UpdateUserDetails from "./pages/UpdateUserDetails";
 import AccountDetails from "./pages/AccountDetails";
 import UpdateAccountDetails from "./pages/UpdateAccountDetails";
 import Footer from "./components/Footer";
-import Workouts from "./pages/Workouts";
+import MyWorkouts from "./pages/MyWorkouts";
 
 //TODO: IN MYWORKOUTS PAGE, ONLY FETCH WORKOUTS BY USER ID
 
@@ -77,10 +77,10 @@ function App() {
             }
           />
           <Route
-            path="/user/workouts"
+            path="/user/my-workouts"
             element={
               <ProtectRoutes user={currentUser}>
-                <Workouts />
+                <MyWorkouts />
               </ProtectRoutes>
             }
           />

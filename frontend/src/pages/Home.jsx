@@ -16,14 +16,14 @@ const Home = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [deletedWorkout, setDeletedWorkout] = useState({});
   const [page, setPage] = useState(1);
-  const [lastWorkouts, setLastWorkouts] = useState(false);
+  const [loadMore, setLoadMore] = useState(false);
   const [loadInitialWorkouts, setLoadInitialWorkouts] = useState(false)
   const [formInfo, setFormInfo] = useState({})
 
   useEffect(() => {
     const getAllWorkouts = async () => {
       setPage(1)
-      setLastWorkouts(false)
+      setLoadMore(false)
       try {
         setLoading(true);
         const workouts = await fetchAllWorkouts();
@@ -40,13 +40,13 @@ const Home = () => {
 
   const handleLoadMore = async (event) => {
     event.preventDefault();
-    setLastWorkouts(false)
+    setLoadMore(false)
     setLoadInitialWorkouts(false)
     try {
       setLoading(true);
       const workouts = await fetchAllWorkouts(page);
       if (workouts.length < 3) {
-        setLastWorkouts(true)
+        setLoadMore(true)
         setLoading(false);
         setError(false);
       }
@@ -75,6 +75,7 @@ const Home = () => {
         });
         setWorkouts(filteredWorkouts);
         setDeletedWorkout(response);
+        setLoading(false)
         setShowModal(true);
       }
     } catch (error) {
@@ -82,6 +83,7 @@ const Home = () => {
       setError(error.response.data.error);
     }
   };
+  console.log(workouts)
   return (
     <div className="home">
       <Modal
@@ -106,8 +108,17 @@ const Home = () => {
             />
           ))}
         {loading && <LoadingPage />}
-        {lastWorkouts && (
+        {workouts.length === 0 && (
           <div className="flex justify-center">
+          <p
+            className=" font-black text-blue-700 text-xl"
+          >
+            No more workouts to show
+          </p>
+        </div>
+        )}
+        {loadMore && (
+          <div className="flex justify-center mt-4">
           <button
             onClick={() => setLoadInitialWorkouts(true)}
             className="bg-blue-700 p-3 rounded-full font-black text-white "
@@ -116,7 +127,7 @@ const Home = () => {
           </button>
         </div>
         )}
-        {!lastWorkouts && (
+        {workouts.length !== 0 && !loadMore && (
           <div className="flex justify-center">
             <button
               onClick={handleLoadMore}
@@ -126,6 +137,7 @@ const Home = () => {
             </button>
           </div>
         )}
+
       </div>
       <div className="workout__form md:mt-12 sticky top-24 self-start">
         <WorkoutForm />

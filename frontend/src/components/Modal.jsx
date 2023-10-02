@@ -60,7 +60,7 @@ const Modal = ({ showModal, setShowModal, deletedWorkout }) => {
                 {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
               </p>
             </div>
-            <button onClick={() => setShowModal(false)}>Close</button>
+            <button onClick={() => setShowModal(false)} className="bg-blue-700">Close</button>
           </motion.div>
         </motion.div>
       )}

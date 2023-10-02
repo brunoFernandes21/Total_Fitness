@@ -99,7 +99,7 @@ const Navbar = ({ logout, showInfo, setShowInfo }) => {
 
                   <ul className=" flex flex-col justify-start items-start text-lg divide-y">
                     <Link
-                      to="/user/workouts"
+                      to="/user/my-workouts"
                       className="px-4 py-4 transition duration-150 ease-in hover:bg-slate-100 inline-block w-full"
                       onClick={() => setShowInfo(!showInfo)}
                     >
