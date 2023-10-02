@@ -113,7 +113,7 @@ const Home = () => {
           <p
             className=" font-black text-blue-700 text-xl"
           >
-            No more workouts to show
+            No workouts to show
           </p>
         </div>
         )}
