@@ -65,23 +65,29 @@ const Home = () => {
     setFormInfo({id, title, load, reps})
   }
   const onDelete = async (id) => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await deleteWorkout(id);
-      if (response) {
-        const filteredWorkouts = workouts.filter((workout) => {
-          return workout._id !== id;
-        });
-        setWorkouts(filteredWorkouts);
-        setDeletedWorkout(response);
+    let text = "Are you sure you want to delete workout?"
+    if(confirm(text) === true){
+      try {
+        setLoading(true)
+        setError(null)
+        const response = await deleteWorkout(id);
+        if (response) {
+          const filteredWorkouts = workouts.filter((workout) => {
+            return workout._id !== id;
+          });
+          setWorkouts(filteredWorkouts);
+          setDeletedWorkout(response);
+          setLoading(false)
+          setShowModal(true);
+        }
+      } catch (error) {
         setLoading(false)
-        setShowModal(true);
+        setError(error.response.data.error);
       }
-    } catch (error) {
-      setLoading(false)
-      setError(error.response.data.error);
+    }else {
+      return 
     }
+    
   };
   console.log(workouts)
   return (
