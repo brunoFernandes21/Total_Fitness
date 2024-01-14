@@ -10,7 +10,14 @@ const app = express()
 
 //middleware
 app.use(express.json()) //allows to make post and patch request
-app.use(cors());
+app.use(cors(
+  {
+    origin: [],
+    methods: ["POST", "GET"],
+    credentials: true
+  }
+
+));
 app.use((request, response, next) => {
     console.log(request.path, request.method)
     next()

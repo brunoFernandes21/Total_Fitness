@@ -16,7 +16,7 @@ router.get("/:id", getWorkoutsById)
 router.get("/:id", getSingleWorkout)
 // POST a new workout
 router.post("/", createWorkout)
-//DELETE a workout
+//DELETE a workout 
 router.delete("/:id", deleteWorkout)
 //UPDATE a workout
 router.patch("/:id", updateWorkout)

@@ -115,7 +115,7 @@ const Home = () => {
           ))}
         {loading && <LoadingPage />}
         {workouts.length === 0 && (
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-40">
           <p
             className=" font-black text-blue-700 text-xl"
           >
