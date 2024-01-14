@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npm build --output public"
+    "build": "npm build"
   },
   "keywords": [],
   "author": "",
